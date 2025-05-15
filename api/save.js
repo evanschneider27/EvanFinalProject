@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+const { createClient } = await import('@supabase/supabase-js');
 
 const supabase = createClient(
   'https://fztxnrkmmfhujqmkckra.supabase.co',
@@ -20,7 +20,9 @@ export default async function handler(req, res) {
     .from('search_history')
     .insert([{ city, temperature, suggestion }]);
 
-  if (error) return res.status(500).json({ error: error.message });
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
 
   res.status(200).json({ success: true });
 }
