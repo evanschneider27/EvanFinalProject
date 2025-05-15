@@ -1,4 +1,5 @@
-const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const fetch = (...args) =>
+  import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 export default async function handler(req, res) {
   const { city } = req.query;
@@ -9,11 +10,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    const response = await fetch(`http://api.weatherstack.com/current?access_key=${API_KEY}&query=${city}`);
+    const response = await fetch(
+      `http://api.weatherstack.com/current?access_key=${API_KEY}&query=${city}`
+    );
     const data = await response.json();
 
     if (!data.current || !data.location) {
-      return res.status(500).json({ error: 'Unexpected API response format' });
+      return res
+        .status(500)
+        .json({ error: 'Unexpected API response format', data });
     }
 
     const temp = data.current.temperature;
