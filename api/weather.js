@@ -1,8 +1,8 @@
-import fetch from 'node-fetch';
+const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 export default async function handler(req, res) {
   const { city } = req.query;
-  const API_KEY = 'f1b60f4625fc97005832109becaa7ade';
+  const API_KEY = process.env.WEATHERSTACK_KEY;
 
   if (!city) {
     return res.status(400).json({ error: 'City is required' });
@@ -28,6 +28,7 @@ export default async function handler(req, res) {
 
     res.status(200).json({ location, temperature: temp, condition, suggestion });
   } catch (err) {
+    console.error('Weather API error:', err);
     res.status(500).json({ error: 'Something went wrong', details: err.message });
   }
 }
