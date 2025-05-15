@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Forecast - Weather Visualization</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="forecast.html">Forecast</a></li>
+    </ul>
+  </nav>
+
+  <h1>Temperature History</h1>
+  <canvas id="tempChart" width="400" height="200"></canvas>
+  <div id="message"></div>
+
+  <script>
+    async function drawChart() {
+      try {
+        const res = await fetch('/api/history');
+        const history = await res.json();
+
+        if (!Array.isArray(history) || history.length === 0) {
+          document.getElementById('message').textContent = 'No search history found yet.';
+          return;
+        }
+
+        const labels = history.map(item =>
+          `${item.city} @ ${new Date(item.created_at).toLocaleTimeString()}`
+        );
+        const temps = history.map(item => item.temperature);
+
+        const ctx = document.getElementById('tempChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels,
+            datasets: [{
+              label: 'Temperature (°F)',
+              data: temps,
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 2,
+              fill: true
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: { beginAtZero: false }
+            }
+          }
+        });
+      } catch (err) {
+        document.getElementById('message').textContent = 'Error loading forecast.';
+        console.error('Chart Error:', err);
+      }
+    }
+
+    drawChart();
+  </script>
+</body>
+</html>
