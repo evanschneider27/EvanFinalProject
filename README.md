@@ -36,7 +36,7 @@ Step 5: To Run the Application Locally
 
 node index.js
 
-open browser: http://localhost:3000/home.html
+open browser: http://localhost:3000/index.html
 
 
 # Server API Documentation:
