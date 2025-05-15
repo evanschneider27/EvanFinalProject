@@ -1,13 +1,12 @@
 {
   "name": "weather-wear-app",
   "version": "1.0.0",
-  "description": "A weather-based clothing suggestion app using Weatherstack and Supabase.",
   "type": "module",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.3",
-    "node-fetch": "^3.3.4"
+    "node-fetch": "^3.3.2"
   }
 }
