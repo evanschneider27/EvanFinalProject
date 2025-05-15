@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+const { createClient } = await import('@supabase/supabase-js');
 
 const supabase = createClient(
   'https://fztxnrkmmfhujqmkckra.supabase.co',
@@ -12,7 +12,9 @@ export default async function handler(req, res) {
     .order('created_at', { ascending: false })
     .limit(10);
 
-  if (error) return res.status(500).json({ error: error.message });
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
 
   res.status(200).json(data);
 }
