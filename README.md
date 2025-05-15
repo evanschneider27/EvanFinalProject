@@ -1,20 +1,20 @@
 # Evan  Schneider Final Project INST377
 Weather App with Clothing Suggestions
 
-Description:
+# Description:
 This web app helps users decide what to wear based on weather conditions. The user asks for the weather in a certain city, and the app returns the temperature, weather descriptions, and a clothing recommendation. Results are saved in a Supabase database and visualized using a chart. The app features three pages: a home page for searching, an about page, and a forecast page showing recent temperature trends.
 
-Target Browsers:
+# Target Browsers:
 Desktop: Chrome, Edge, Safari
 Mobile: Safari on iOS, Chrome on Android
 
-Developer Manual:
+# Developer Manual:
 You can find the full Developer Manual below.
 
-Audience:
+# Audience:
 This manual is intended for future developers maintaining or expanding this app. You should be familiar with JavaScript, Node.js, HTML/CSS, and REST APIs. This document will walk you through setup, running the project, and understanding the backend API.
 
-Installation Instructions:
+# Installation Instructions:
 
 Step 1: Download and Set up prerequisites
 
@@ -39,7 +39,7 @@ node index.js
 open browser: http://localhost:3000/home.html
 
 
-Server API Documentation:
+# Server API Documentation:
 
 GET /api/weather?city={cityName}
 
@@ -65,7 +65,7 @@ GET /api/history
 
 -Returns: JSON array of recent search objects
 
-Known Bugs:
+# Known Bugs:
 
 -Weather data may be delayed due to Weatherstack's free-tier caching
 
@@ -73,7 +73,7 @@ Known Bugs:
 
 -Forecast chart may appear empty until user performs at least one search
 
-Road Map for the Future:
+# Road Map for the Future:
 
 -Add geolocation-based weather fetching
 
