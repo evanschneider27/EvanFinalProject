@@ -57,6 +57,9 @@ Known Bugs:
 
 Road Map for the Future:
 -Add geolocation-based weather fetching
+
 -Support weather icons and more detailed conditions
+
 -Add user login via Supabase Auth
+
 -Enable deletion and filtering of saved searches
